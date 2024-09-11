@@ -29,8 +29,10 @@ public class CrawlingController {
 
     @GetMapping("/wanted")
     public String crawlWanted(Model model) throws Exception {
+    	System.out.println("크롤링 시작 >> 서비스로 탐");
         List<Map<String, Object>> jobDataList = jobCrawlingService.getCrawalingData();
         model.addAttribute("jobDataList", jobDataList);
+        System.out.println("크롤링 끝 >> 크롤링한 데이터 출력");
         System.out.println(jobDataList.toString());
         return "testCrawlResult";  // JSP 파일명
     }

@@ -29,16 +29,20 @@ public class CrawlingService {
 	public static final int NOTICE_EACH = 2;
 	
 	public List<Map<String, Object>> getCrawalingData() throws Exception {
+		System.out.println("드라이버 경로 설정 시작");
 		String driverPath = System.getProperty("os.name").toLowerCase().contains("win") 
 	            ? "src/main/resources/driver/msedgedriver.exe"
 	            : "/opt/microsoft/msedge/microsoft-edge"; // 리눅스의 경우 적절한 경로로 변경
+		System.out.println("드라이버 경로 : " + driverPath);
 
 			System.setProperty("webdriver.edge.driver", driverPath);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 			
 			List<Map<String, Object>> jobDataList = new ArrayList<>();
+			System.out.println("job id 수집 시작");
 			List<String> wantedJobIds = getJobIds();
+			System.out.println("job id 수집 끝 >>> " + wantedJobIds.toString());
 			jobDataList.addAll(selectWanted(wantedJobIds));
 			driver.quit();
 			return jobDataList;
