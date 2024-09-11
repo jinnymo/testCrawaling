@@ -1,0 +1,75 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.3.3'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.perfectfolio'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+
+}
+
+dependencies {
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	// implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+	implementation 'com.google.code.gson:gson:2.10.1'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	
+/*	implementation platform('com.google.cloud:libraries-bom:26.27.0') // BOM 버전 업데이트
+	implementation 'com.google.cloud:google-cloud-bigquery'
+	implementation 'com.google.cloud:google-cloud-vertexai:2.32.0'*/
+	
+	implementation platform('com.google.cloud:libraries-bom:26.29.0')
+	implementation 'com.google.cloud:google-cloud-bigquery'
+	implementation 'com.google.cloud:google-cloud-vertexai' // 버전 명시 제거
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.0'
+	implementation 'org.mongodb:mongodb-driver-sync:5.1.4'
+	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.23.1'
+	implementation group: 'org.jsoup', name: 'jsoup', version: '1.15.3'
+
+	
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
+	implementation 'org.springframework.security:spring-security-crypto'
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'com.sun.mail:jakarta.mail:2.0.1'
+	implementation 'org.json:json:20210307'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	providedRuntime 'javax.servlet:javax.servlet-api:4.0.1'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	//testImplementation 'org.springframework.security:spring-security-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
