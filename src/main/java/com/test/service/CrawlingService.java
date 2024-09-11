@@ -31,7 +31,7 @@ public class CrawlingService {
 	public List<Map<String, Object>> getCrawalingData() throws Exception {
 		String driverPath = System.getProperty("os.name").toLowerCase().contains("win") 
 	            ? "src/main/resources/driver/msedgedriver.exe"
-	            : "/path/to/edgedriver"; // 리눅스의 경우 적절한 경로로 변경
+	            : "/opt/microsoft/msedge/microsoft-edge"; // 리눅스의 경우 적절한 경로로 변경
 
 			System.setProperty("webdriver.edge.driver", driverPath);
 
