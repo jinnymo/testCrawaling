@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.test.repository.CrawlingRepository">
+
+	<select id="getNoticeIdList" resultType="Integer">
+
+		SELECT notice_id FROM
+		crawl_skill_json
+
+	</select>
+
+	<insert id="insertOriginNoticeJson">
+	    INSERT INTO test1 (json)
+	    VALUES
+	    <foreach collection="list" item="item" separator=",">
+	        (#{item})
+	    </foreach>
+	</insert>
+	
+	<insert id="insertSkillNoticeJson">
+	    INSERT INTO test (notice_id, crawl_json, gpt_json, mongo_json, compleion)
+	    VALUES
+	    <foreach collection="list" item="item" separator=",">
+	        (#{item.noticeId}, #{item.crawlJson}, #{item.gptJson}, #{item.mongoJson}, #{item.completion})
+	    </foreach>
+	</insert>
+	
+	<insert id="insertNewSkill">
+		<if test="list != null and list.size() > 0">
+	    INSERT INTO test_skill (p_id, name)
+	     
+	    VALUES 
+	    <foreach collection="list" item="item" separator=",">
+	        (#{item.pId}, #{item.name})
+	    </foreach>
+	    </if>
+	</insert>
+
+
+	<update id="updateNoticeId">
+		<![CDATA[
+		UPDATE test1
+
+		SET
+
+		notice_id = JSON_UNQUOTE(JSON_EXTRACT(json, '$.id'))
+
+		WHERE
+
+		JSON_CONTAINS_PATH(json, 'one', '$.id')
+
+		AND notice_id IS NULL
+		]]>
+
+	</update>
+	
+</mapper>

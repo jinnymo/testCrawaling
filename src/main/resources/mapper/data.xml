@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.test.repository.DataRepository">
+
+	<select id="makeJsonlFile" resultType="com.test.repository.model.JsonlModel">
+		select request_jsonl,response_jsonl
+		from origin_change_jsonl
+		where response_jsonl is not null;
+
+	</select>
+
+	<select id="getRandomOriginDataId" resultType="Integer">
+		SELECT id
+		FROM origin_change_jsonl
+		WHERE response_jsonl IS NULL
+		ORDER BY RAND()
+			LIMIT 1
+	</select>
+
+
+	<select id="getSingleOriginDataId" resultType="Integer">
+		SELECT id
+		FROM
+		origin_change_jsonl
+		WHERE response_jsonl IS NULL
+		ORDER BY id ASC
+		LIMIT 1
+	</select>
+
+	<select id="getSingleOriginData" resultType="String">
+		SELECT origin_jsonl
+		FROM origin_change_jsonl
+		WHERE id = #{id}
+		ORDER BY id ASC
+		LIMIT 1
+	</select>
+	
+	<insert id="insertCategory">
+		INSERT INTO ${tableName} (category_name)
+		VALUES (#{categoryName})
+	</insert>
+
+	<update id="insertResultAndResponseData">
+		update origin_change_jsonl
+		set response_jsonl = #{responseData}, result_jsonl = #{resultData}
+		where id = #{id}
+	</update>
+
+
+	<select id="getAllCategory"
+		resultType="com.test.dto.CategoryDTO">
+		SELECT 0 AS category_type, id, category_name AS name FROM
+		main_category
+		UNION ALL
+		SELECT 1 AS category_type, id, category_name AS name FROM category
+		UNION ALL
+		SELECT 2 AS category_type, id, category_name AS name FROM project_category
+		UNION ALL
+		SELECT 3 AS category_type, id, category_name AS name FROM qualifications_skill
+		UNION ALL
+		SELECT 4 AS category_type, id, category_name AS name FROM qualifications_option
+		UNION ALL
+		SELECT 5 AS category_type, id, category_name AS name FROM preferred_option
+	</select>
+	
+	<select id="getSkillAllCategory"
+		resultType="com.test.dto.CategoryDTO">
+		select p_id, id, name from test_skill where p_id is not null
+	</select>
+
+</mapper>

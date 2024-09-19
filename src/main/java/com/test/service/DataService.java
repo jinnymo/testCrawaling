@@ -1,25 +1,22 @@
 package com.test.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tenco.perfectfolio.dto.admin.CategoryDTO;
-import com.tenco.perfectfolio.dto.admin.SingleOriginDataDTO;
-import com.tenco.perfectfolio.repository.interfaces.admin.DataRepository;
-import com.tenco.perfectfolio.repository.model.admin.JsonlModel;
-import com.tenco.perfectfolio.utils.Define;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.dto.CategoryDTO;
+import com.test.repository.DataRepository;
+import com.test.repository.model.JsonlModel;
+import com.test.utils.Define;
 
 @Service
 public class DataService {

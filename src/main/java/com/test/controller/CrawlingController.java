@@ -18,7 +18,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.tenco.perfectfolio.repository.entity.NoticeEntity;
+import com.test.repository.entity.NoticeEntity;
 import com.test.service.CrawlingService;
 import com.test.service.NoticeModifyService;
 import com.test.service.OpenAiService;
@@ -41,13 +41,14 @@ public class CrawlingController {
 		List<Map<String, Object>> jobDataList = crawlingService.getCrawlingData();
 		JsonArray noticeJsonArray = crawlingService.getNoticeToJsonList(jobDataList);
 		
-		// TODO 실제 저장됨. 필요할 때 주석 제거 crawl_notice_json에 데이터 insert
+		// TODO 크롤링 원본 데이터가 실제 저장됨.
 		crawlingService.insertOriginNoticeJson(noticeJsonArray);
 
-		JsonArray promptJsonArray = crawlingService.getNoticeToJsonListByGptPrompt(jobDataList);
-		JsonArray gptJsonArray = openAiService.getNoticeToJsonListByGpt(promptJsonArray);
-
-		crawlingService.insertNoticeJsonByGpt(promptJsonArray, gptJsonArray);
+		// TODO GPT API 호출되어 데이터가 저장됨.
+//		JsonArray promptJsonArray = crawlingService.getNoticeToJsonListByGptPrompt(jobDataList);
+//		JsonArray gptJsonArray = openAiService.getNoticeToJsonListByGpt(promptJsonArray);
+//
+//		crawlingService.insertNoticeJsonByGpt(promptJsonArray, gptJsonArray);
 
 		model.addAttribute("jobDataList", jobDataList);
 		return "testCrawlResult"; // JSP 파일명

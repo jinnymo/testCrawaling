@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.test.dto.CategoryDTO;
 import com.test.repository.model.JsonNoticeSkill;
 
 @Mapper

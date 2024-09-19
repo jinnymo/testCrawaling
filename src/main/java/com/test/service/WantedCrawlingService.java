@@ -16,14 +16,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.tenco.perfectfolio.repository.interfaces.crawling.CrawlingRepository;
-import com.tenco.perfectfolio.utils.Define;
-import com.tenco.perfectfolio.utils.StrUtil;
-import com.tenco.perfectfolio.utils.WebDriverConnect;
+import com.test.utils.Define;
+import com.test.utils.StrUtil;
+import com.test.utils.WebDriverConnect;
 
 @Service
 public class WantedCrawlingService {

@@ -14,14 +14,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tenco.perfectfolio.dto.admin.CategoryDTO;
-import com.tenco.perfectfolio.repository.model.crawl.JsonNoticeSkill;
-import com.tenco.perfectfolio.service.DataService;
-import com.tenco.perfectfolio.utils.Define;
+import com.test.dto.CategoryDTO;
 import com.test.repository.CrawlingRepository;
+import com.test.repository.model.JsonNoticeSkill;
+import com.test.utils.Define;
+import com.test.utils.JsonUtil;
 import com.test.utils.WebDriverConnect;
-
-import io.grpc.internal.JsonUtil;
 
 @Service
 public class CrawlingService {
