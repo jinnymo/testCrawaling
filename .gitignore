@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# secure-yml
+application-secure.yml
